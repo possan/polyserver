@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "apng-canvas-parser": "git://github.com/59naga/apng-canvas-parser.git#727a15dcea6a070569e3b331966f4e3fd92d3a6c",
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "jpeg-js": "^0.1.1",
+    "restler": "^3.4.0"
+  }
+}
