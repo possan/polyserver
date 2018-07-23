@@ -21,6 +21,8 @@ app.post('/convert', function (req, res, done) {
 	v.url = req.query.url || req.params.url || req.body.url || '';
 	v.cutoff = req.query.cutoff || req.params.cutoff || req.body.cutoff || 5000;
 	v.threshold = req.query.threshold || req.params.threshold || req.body.threshold || 40;
+	var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+	console.log('Got request for "' + v.url + '", cutoff='+v.cutoff+', threshold='+v.threshold+' from ' + ip);
 	v.go(function() {
 		if (v.error) {
 			res.send({

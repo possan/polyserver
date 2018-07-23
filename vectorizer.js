@@ -64,11 +64,9 @@ Vectorizer.prototype.loadPixels = function(callback) {
 		callback(false);
 	  } else {
 	  	console.log('got ' + result.length + ' bytes of image data');
-	  	console.log(result);
 
 	  	try {
 			var rawImageData = jpeg.decode(result);
-			console.log('rawImageData', rawImageData);
 			_this.width = rawImageData.width;
 			_this.height = rawImageData.height;
 			_this.pixels = rawImageData.data;
@@ -77,7 +75,6 @@ Vectorizer.prototype.loadPixels = function(callback) {
 			try {
 				var t = apngCanvasParser(result);
 				t.then(function(images) {
-				 	console.log('images', images);
 					_this.width = images[0].width;
 					_this.height = images[0].height;
 					_this.pixels = images[0].data;
@@ -194,7 +191,6 @@ Vectorizer.prototype.vectorize = function(callback) {
 
 	var tris = Delaunay.triangulate(this.points);
 	console.log('tris.length / 3', tris.length / 3);
-	console.log('tris', tris);
 
 	var tricolors = [];
 	var trisoutput = [];
@@ -213,7 +209,7 @@ Vectorizer.prototype.vectorize = function(callback) {
 
 		var cx = Math.round((x0 + x1 + x2) / 3);
 		var cy = Math.round((y0 + y1 + y2) / 3);
-		
+
 		var bo = (cy * this.width + cx) * 4;
 		tricolors.push([
 			PX[bo + 0],
@@ -229,7 +225,7 @@ Vectorizer.prototype.vectorize = function(callback) {
 		var v2 = tris[i * 3 + 2];
 
 		var cc = tricolors[i];
-		
+
 		var x0 = Math.floor(this.points[v0][0]);
 		var y0 = Math.floor(this.points[v0][1]);
 		var x1 = Math.floor(this.points[v1][0]);
